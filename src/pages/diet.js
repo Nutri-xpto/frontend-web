@@ -1,10 +1,8 @@
-import React from "react";
+import React from 'react';
 import NewDiet from '../components/nutrihome/NewDiet';
 
 function Diet() {
-  return (
-    <NewDiet />
-  )
+  return <NewDiet />;
 }
 
-export default Diet
+export default Diet;

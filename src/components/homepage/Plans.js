@@ -1,10 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Plans() {
-  return (
-    <div>
-    </div>
-  )
+  return <div></div>;
 }
 
-export default Plans
+export default Plans;
