@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../contexts/auth';
 import './nutrihome.css';
 
 function NutriHome() {
+  const { signOut } = useContext(AuthContext);
+
   return (
     <>
       <nav>
@@ -30,6 +33,12 @@ function NutriHome() {
               {' '}
               Loja{' '}
             </NavLink>
+          </li>
+
+          <li>
+            <button className="navlink" onClick={() => signOut()}>
+              Sair
+            </button>
           </li>
         </ul>
       </nav>

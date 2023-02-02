@@ -1,15 +1,17 @@
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import RoutesApp from './routes';
-
-import app from '../src/services/firabaseConnection';
+import AuthProvider from './contexts/auth';
+import firebase from '../src/services/firabaseConnection';
 
 function App() {
-  console.log(app);
+  console.log(firebase);
   return (
-    <BrowserRouter>
-      <RoutesApp />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <RoutesApp />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

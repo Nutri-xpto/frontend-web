@@ -42,6 +42,8 @@
 }
 
 .wrap-info {
+    align-items: center;
+    display: flex;
     border-radius: 10px;
     background-color: rgba(253, 210, 130, 0.5);
     overflow: hidden;
@@ -53,20 +55,32 @@
 
 .info-form {
     width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
+
 .info-form-logo img  {
-    height: 190px;
-    width: 238px;   
-    position: relative;
-    top: -15%;
-    right: -20%;
+    height: 140px;
+    width: 148px;   
 }
 
 .wrap-input {
     width: 100%;
-    position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-family: 'DM Sans';
+    color: rgba(88, 105, 46, 0.5);
+    line-height: 1.5;
+    border-radius: 10px;
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    height: 45px;
+    background-color: #f5f5f5;
+    padding: 2 2 2 5px
 }
 
 .input {
@@ -74,10 +88,11 @@
     font-family: 'DM Sans';
     color: rgba(88, 105, 46, 0.5);
     line-height: 1.5;
+    border: 0;
     border-radius: 10px;
-    display: block;
+    align-items: center;
     width: 80%;
-    margin: 0 auto;
+    margin-bottom: 10px;
     height: 45px;
     background-color: #f5f5f5;
     padding: 0 5px;
@@ -185,7 +200,6 @@
 
 .back {
     padding-bottom: 13px;
-    margin: 15px;
 }
 
 .form-btn {
@@ -194,19 +208,26 @@
     border: none;
     border-radius: 15px;
     border: 1px solid #58692e;
-    line-height: 1.2;
-    width: 40%;
+    width: 200px;
+    margin-bottom: 10px;
+    margin-top: 15px;
     height: 50px;
+    background-color: #58692e;
+    color: #f5f5f5;
 }
 
+
 .login-btn {
-    color: #FFFFFF;
-    background-color: #58692e;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .signup-btn {
     color: #58692e;
     background-color: transparent;
+    text-decoration: none;
 }
 
 .next-btn {

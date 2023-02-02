@@ -16,7 +16,7 @@ export default function Routes() {
       <Route exact path="/" component={Home} />
       <Route path="/signup" component={SignUp} />
       <Route path="/signin" component={SignIn} />
-      <Route path="/nutrihome" component={NutriHome} />
+      <Route path="/nutrihome" component={NutriHome} isPrivate />
       <Route path="/registerpatient" component={RegisterPatient} />
       <Route path="/patients" component={Patients} />
       <Route path="/patient" component={Patient} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import './login.css';
+import './signin.css';
 // import Userfront from "@userfront/core";
 import axios from 'axios';
 import { useState } from 'react';
@@ -52,43 +52,49 @@ function SignIn() {
     return formIsValid;
   };
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert(email, password);
+  }
+
   return (
-    <div className="container">
-      <div className="container-info">
-        <div className="wrap-info">
-          <form className="info-form" onSubmit={null}>
-            <span className="info-form-logo">
-              <img src={'/images/logo.png'} alt="logo" />
-            </span>
+    <div className="container-info">
+      <div className="wrap-info">
+        <form className="info-form" onSubmit={handleSubmit}>
+          <span className="info-form-logo">
+            <img src={'/images/logo.png'} alt="logo" />
+          </span>
 
-            <div className="wrap-input">
-              <input type="text" placeholder="Email" />
-            </div>
+          <input
+            className="input"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-            <div className="wrap-input">
-              <input type="password" placeholder="Senha" />
-            </div>
+          <input
+            className="input "
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
+          <div className="login-btn">
             <div>
-              <div className="container-form-btn login">
-                <NavLink to="/nutrihome">
-                  <button type="submit" className="form-btn login-btn">
-                    {' '}
-                    Login{' '}
-                  </button>
-                </NavLink>
-              </div>
-              <div>
-                <NavLink to="/signup">
-                  <span className="signup-btn">
-                    {' '}
-                    Não tem uma conta? Cadastre-se aqui!{' '}
-                  </span>
-                </NavLink>
-              </div>
+              <button type="submit" className="form-btn">
+                {' '}
+                Login{' '}
+              </button>
             </div>
-          </form>
-        </div>
+            <div>
+              <NavLink className="signup-btn" to="/signup">
+                <span> Não tem uma conta? Cadastre-se aqui! </span>
+              </NavLink>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );
