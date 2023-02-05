@@ -1,0 +1,99 @@
+.container {
+    display: flex;
+    background-color:#FDD282 ;
+    border-radius: 5px;
+    padding: .8em;
+    align-items: center;
+    flex-direction: row
+}
+
+.Label-avatar{
+    width: 280px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.Label-avatar input{
+    display: none;
+}
+
+.Label-avatar span{
+    z-index: 99;
+    position: absolute;
+    opacity: 0.7;
+    transition: all .5s;
+
+}
+
+.Label-avatar span:hover{
+    opacity: 1;
+    transform: scale(1.4);
+}
+
+.form-profile img {
+    margin-bottom: 1em;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.form-profile label {
+    margin-bottom: .5em;
+    font-size: 1.4em;
+}
+
+.form-profile input, textarea, select{
+    margin-bottom: 1em;
+    flex-direction: column;
+    padding: .7em;
+    border: none;
+    border-radius: 5px;
+    max-width: 600px;
+
+}
+
+.form-profile input:disabled{
+    cursor: not-allowed;
+}
+
+.form-inputs{
+    display: grid;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 10px;
+}
+
+.form-pair{
+    display: flex;
+    padding: 10px;
+}
+
+.form-profile{
+    display: grid;
+    width: 100%;
+}
+
+.btn-area{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.form-profile button{
+    width: 200px;
+    font-size: 15px;
+    font-family: 'DM Sans';
+    border: none;
+    border-radius: 5px;
+    border: 1px solid #58692e;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+    height: 30px;
+    background-color: #58692e;
+    color: #f5f5f5;
+    cursor: pointer;
+}

@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import './signin.css';
-// import Userfront from "@userfront/core";
-import axios from 'axios';
 import { useState } from 'react';
+import { AuthContext } from '../../contexts/auth';
+import { CircularProgress } from '@mui/material';
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { signIn, loadingAuth } = useContext(AuthContext);
 
   const validateForm = () => {
     let errors = {};
@@ -54,7 +56,10 @@ function SignIn() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    alert(email, password);
+
+    if (email !== '' && password !== '') {
+      signIn(email, password);
+    }
   }
 
   return (
@@ -83,10 +88,14 @@ function SignIn() {
 
           <div className="login-btn">
             <div>
-              <button type="submit" className="form-btn">
-                {' '}
-                Login{' '}
-              </button>
+              {loadingAuth ? (
+                <CircularProgress color="success" />
+              ) : (
+                <button type="submit" className="form-btn">
+                  {' '}
+                  Login{' '}
+                </button>
+              )}
             </div>
             <div>
               <NavLink className="signup-btn" to="/signup">

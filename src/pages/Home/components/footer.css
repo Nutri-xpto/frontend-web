@@ -16,7 +16,7 @@ body {
   }
 }
    
-.container {
+.container-footer {
     display: inline;
     flex-direction: column;
     justify-content: center;

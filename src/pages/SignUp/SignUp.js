@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './signup.css';
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/auth';
+import { CircularProgress } from '@mui/material';
 
 function SignUp() {
   const [name, setName] = useState('');
@@ -13,7 +14,7 @@ function SignUp() {
   const [address, setAddress] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
 
-  const { signUp } = useContext(AuthContext);
+  const { signUp, loadingAuth } = useContext(AuthContext);
 
   const validateForm = () => {
     let formIsValid = true;
@@ -89,10 +90,14 @@ function SignUp() {
           />
 
           <div className="login-btn">
-            <button type="submit" className="form-btn">
-              {' '}
-              Cadastrar{' '}
-            </button>
+            {loadingAuth ? (
+              <CircularProgress color="success" />
+            ) : (
+              <button type="submit" className="form-btn">
+                {' '}
+                Cadastrar{' '}
+              </button>
+            )}
           </div>
         </form>
       </div>

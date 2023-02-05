@@ -16,7 +16,7 @@ function Footer() {
       <span className="logo_footer">
         <img src={'/images/logo.png'} alt="logo" />
       </span>
-      <div className="container">
+      <div className="container-footer">
         <div className="row">
           <div className="column">
             <div className="heading">Sobre nós</div>
