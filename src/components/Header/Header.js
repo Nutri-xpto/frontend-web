@@ -35,10 +35,6 @@ export default function Header() {
         {' '}
         <FiUsers color="#58692e" /> Pacientes{' '}
       </Link>
-      <Link to="/store">
-        {' '}
-        <FiShoppingCart color="#58692e" /> Loja{' '}
-      </Link>
       <Link to="/profile">
         {' '}
         <FiUser color="#58692e" /> Perfil{' '}

@@ -1,0 +1,158 @@
+.cont-diet-template {
+    width: 100%;
+    height: 500px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: white;
+    padding-top: 2px;
+    padding-bottom: 10px;
+    box-shadow: 2px 4px 20px 4px rgba(88, 105, 46, 0.355)
+}
+
+
+.schedulle-diet{
+    height: 400px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 4px 20px 4px rgba(88, 105, 46, 0.355);
+    margin-top: 40px;
+
+}
+
+
+.schedulle-diet span{
+    padding: 10px 10px;
+    display: flex;
+    font-size: 20px;
+    color: #58692e;
+    font-weight: bold;
+}
+
+.scheduller-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.scheduller-head button{
+    font-size: 15px;
+    font-family: 'DM Sans';
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+    height: 30px;
+    width: 150px;
+    background-color: #58692e;
+    color: #f5f5f5;
+    cursor: pointer;
+}
+
+
+
+.schedulle h1 {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    overflow-y: scroll;
+    overflow: hidden;
+}
+
+table caption{
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table tr{
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th, table td{
+    padding: .62em;
+    text-align: center;
+}
+
+table td button{
+    font-size: 15px;
+    font-family: 'DM Sans';
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
+    background-color: #58692e;
+    color: #f5f5f5;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.link{
+    color: #58692e
+}
+
+.description{
+    width: 500px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btn-diet-template{
+    font-size: 15px;
+    font-family: 'DM Sans';
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 200px;
+    background-color: #58692e68;
+    color: #f5f5f5;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: ease-in-out 0.4s;
+}
+.btn-diet-template:hover{
+    background-color: #58692e;
+    color: #f5f5f5;
+
+}
+
+.info-form-diet{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-fould-templates{
+    margin-left: 20px;
+}
+
+.select-pacient-diet{
+    margin-left: 10px;
+    width: 300px;
+}
+
+.container-diet{
+    margin-top: 20px;
+    background-color: #fdd28280;
+    padding: 10px 30px;
+    border-radius: 5px;
+    box-shadow: 2px 4px 20px 4px rgba(88, 105, 46, 0.355)
+}
+

@@ -1,10 +1,9 @@
 .container {
     display: flex;
-    background-color:#FDD282 ;
+    background-color:#fdd28280 ;
     border-radius: 5px;
     padding: .8em;
-    align-items: center;
-    flex-direction: row
+    flex-direction: column
 }
 
 .Label-avatar{

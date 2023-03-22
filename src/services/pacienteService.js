@@ -3,7 +3,7 @@ import firebase from './firabaseConnection';
 const registerPacient = async (
   uidNutri,
   name,
-  diseaseHistory,
+  age,
   phone,
   cpf,
   gender,
@@ -12,6 +12,8 @@ const registerPacient = async (
   weight,
   imc,
   bioimpedance,
+  diseaseHistory,
+  additionalInf,
   email,
   password
 ) => {
@@ -29,7 +31,7 @@ const registerPacient = async (
         .doc(uid)
         .set({
           name: name,
-          diseaseHistory: diseaseHistory,
+          age: age,
           phone: phone,
           cpf: cpf,
           gender: gender,
@@ -38,6 +40,8 @@ const registerPacient = async (
           weight: weight,
           imc: imc,
           bioimpedance: bioimpedance,
+          diseaseHistory: diseaseHistory,
+          additionalInf: additionalInf,
           email: email,
           password: password,
           imagePerfil: null,
@@ -52,8 +56,52 @@ const registerPacient = async (
     });
 };
 
+const getAllPacients = async (uidNutri) => {
+  await firebase
+    .firestore()
+    .collection('users')
+    .doc(uidNutri)
+    .collection('pacients')
+    .get()
+    .then((snapshot) => {
+      let lista = [];
+      snapshot.forEach((doc) => {
+        lista.push({
+          id: doc.id,
+          name: doc.data().name,
+          diseaseHistory: doc.data().diseaseHistory,
+          phone: doc.data().phone,
+          cpf: doc.data().cpf,
+          gender: doc.data().gender,
+          goal: doc.data().goal,
+          height: doc.data().height,
+          weight: doc.data().weight,
+          imc: doc.data().imc,
+          bioimpedance: doc.data().bioimpedance,
+          email: doc.data().email,
+          password: doc.data().password,
+          imagePerfil: doc.data().imagePerfil,
+        });
+      });
+
+      if (lista.length === 0) {
+        console.log('LISTAAAAAA', lista);
+        console.log('Nenhum paciente registrado');
+        return [{ id: '1', name: 'teste' }];
+      }
+      console.log('LISTAAAAAA', lista);
+      return lista;
+    })
+    .catch((e) => {
+      console.log(e);
+      alert('Ocorreu algum erro ao pesquisar os pacientes');
+      return [{ id: '1', name: 'teste' }];
+    });
+};
+
 const pacientService = {
   registerPacient,
+  getAllPacients,
 };
 
 export default pacientService;

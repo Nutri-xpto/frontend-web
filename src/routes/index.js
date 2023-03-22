@@ -6,7 +6,7 @@ import Route from './Route';
 import NutriHome from '../pages/NutriHome/NutriHome';
 import RegisterPatient from '../components/patientform/RegisterPatient';
 import Patient from '../components/nutrihome/Patient';
-import Diets from '../components/nutrihome/Diets';
+import Diets from '../pages/Diets/Diets';
 import Diet from '../pages/diet';
 import Profile from '../pages/Profile/Profile';
 import Pacients from '../pages/Pacients/Pacients';
