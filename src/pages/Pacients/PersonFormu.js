@@ -205,7 +205,6 @@ export default function PersonFormu() {
           ) : (
             <button type="submit"> Cadastrar Paciente</button>
           )}
-          <button type="button"> Cadastrar Dieta</button>
         </div>
       </form>
     </div>

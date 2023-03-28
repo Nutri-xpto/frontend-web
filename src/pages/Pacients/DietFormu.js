@@ -291,6 +291,7 @@ export default function DietFormu() {
       .then(() => {
         console.log('entrou2');
         alert('Dieta Adicionada com sucesso');
+        window.location.replace('http://localhost:3000/nutrihome');
         setOpen(false);
       })
       .catch((error) => {
