@@ -11,6 +11,7 @@ import Diet from '../pages/diet';
 import Profile from '../pages/Profile/Profile';
 import Pacients from '../pages/Pacients/Pacients';
 import PersonFormu from '../pages/Pacients/PersonFormu';
+import DietFormu from '../pages/Pacients/DietFormu';
 
 export default function Routes() {
   return (
@@ -23,6 +24,7 @@ export default function Routes() {
       <Route path="/registerpatient" component={RegisterPatient} />
       <Route path="/patients" component={Pacients} isPrivate />
       <Route path="/personformu" component={PersonFormu} isPrivate />
+      <Route path="/dietformu" component={DietFormu} isPrivate />
       <Route path="/patient" component={Patient} isPrivate />
       <Route path="/diets" component={Diets} isPrivate />
       <Route path="/diet" component={Diet} isPrivate />

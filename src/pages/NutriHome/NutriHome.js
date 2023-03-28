@@ -316,7 +316,19 @@ function NutriHome() {
               <button className="register-diet-pacient">
                 <h1>
                   <FiPlus />
-                  Cadastrar Paciente e Dieta
+                  Cadastrar Paciente
+                </h1>
+                <p>
+                  Faça todo o processo de registro a partir daqui de forma
+                  simples
+                </p>
+              </button>{' '}
+            </NavLink>
+            <NavLink to="/dietformu">
+              <button className="register-diet-pacient">
+                <h1>
+                  <FiPlus />
+                  Cadastrar Dieta
                 </h1>
                 <p>
                   Faça todo o processo de registro a partir daqui de forma

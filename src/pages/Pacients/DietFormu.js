@@ -1,6 +1,5 @@
 import Header from '../../components/Header/Header';
 import Title from '../../components/Title/Title';
-import './diets.css';
 import {
   FiAlignRight,
   FiDelete,
@@ -31,7 +30,7 @@ const style = {
   p: 4,
 };
 
-export default function Diets() {
+export default function DietFormu() {
   const { user } = useContext(AuthContext);
 
   const [open, setOpen] = useState(false);
@@ -63,7 +62,6 @@ export default function Diets() {
   const [isLoadingPacients, setIsLoadingPacients] = useState(true);
   const [isLoadingDiets, setIsLoadingDiets] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
   function handleSelect() {
     if (pacients.length === 0) {
       return <span> Sem pacientes cadastrados</span>;
@@ -412,154 +410,94 @@ export default function Diets() {
   }, []);
 
   return (
-    <div>
-      <Header />
-      <div className="content">
-        <Title name="Dietas">
-          <FiAlignRight size={25} />
-        </Title>
+    <div className="container-diet">
+      <h1> Cadastrar Nova Dieta</h1>
+      <form className="form-profile" onSubmit={handleAddDiet}>
+        <div>
+          <label>Selecione o Paciente</label>
+          {handleSelect()}
+        </div>
 
-        <div className="schedulle-diet">
-          <div className="scheduller-head">
-            <span> Templates de Dietas</span>
-            <button onClick={() => setOpen(true)}>
-              <FiPlus /> Adicionar Template
-            </button>
-            <Modal open={open} onClose={() => setOpen(false)}>
-              <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Descreva o template
-                </Typography>
-                <div className="modal-area-diet">
-                  <form className="info-form-diet">
-                    <input
-                      className="input"
-                      type="text"
-                      placeholder="Nome da dieta"
-                      value={dietName}
-                      onChange={(e) => setDietName(e.target.value)}
-                    />
-                    <input
-                      className="input"
-                      type="text"
-                      placeholder="Descrição da Dieta: (motivo e calorias)"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                    />
-                    <Divider />
-                    <input
-                      className="input"
-                      type="text"
-                      placeholder="Dia da Semana"
-                      value={day}
-                      onChange={(e) => setDay(e.target.value)}
-                    />
-                    <div className="description">
-                      <input
-                        className="input"
-                        type="text"
-                        placeholder="Horário"
-                        value={hour}
-                        onChange={(e) => setHour(e.target.value)}
-                      />
-                      <input
-                        className="input"
-                        type="text"
-                        placeholder="Nome da refeição"
-                        value={mealName}
-                        onChange={(e) => setMealName(e.target.value)}
-                      />
-                      <input
-                        className="input"
-                        type="text"
-                        placeholder="Ingredientes (obs: separados por vírgula)"
-                        value={ingredients}
-                        onChange={(e) => setIngredients(e.target.value)}
-                      />
-                      <input
-                        className="input"
-                        type="text"
-                        placeholder="Quantidade (obs: separados por vírgula)"
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                      />
-                      <input
-                        className="input"
-                        type="text"
-                        placeholder="Modo de preparo"
-                        value={prepar}
-                        onChange={(e) => setPrepar(e.target.value)}
-                      />
-                    </div>
+        <div>
+          <label>Selecione o template</label>
+          {handleSelectTemplate()}
+        </div>
 
-                    <div>
-                      <button className="btn-diet-template">
-                        Adicionar Dia da Semana
-                      </button>
-                      <button className="btn-diet-template">
-                        Adicionar Nova Refeiçao
-                      </button>
-                      <button
-                        onClick={handleRegister}
-                        className="btn-diet-template"
-                      >
-                        Adicionar Template
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </Box>
-            </Modal>
+        <div className="form-pair">
+          <div className="form-inputs">
+            <label>Descrição</label>
+            <input
+              type="text"
+              value={descriptionD}
+              onChange={(e) => setDescriptionD(e.target.value)}
+            />
           </div>
-
-          <Divider color="#58692" />
-
-          <div>
-            {templates.length === 0 ? (
-              <h1 className="not-fould-templates">
-                Não há templates registrados
-              </h1>
-            ) : (
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col"> Dieta </th>
-                    <th scope="col"> Descrição </th>
-                    <th scope="col"> Template </th>
-                    <th scope="col"> Ações </th>
-                  </tr>
-                </thead>
-                {handleTableTemplates()}
-              </table>
-            )}
+          <div className="form-inputs">
+            <label>Dia da Semana</label>
+            <input
+              type="text"
+              value={dayD}
+              onChange={(e) => setDayD(e.target.value)}
+            />
           </div>
         </div>
 
-        <div className="schedulle-diet">
-          <div className="scheduller-head">
-            <span> Dietas</span>
+        <div className="form-pair">
+          <div className="form-inputs">
+            <label>Horário</label>
+            <input
+              type="text"
+              value={hourD}
+              onChange={(e) => setHourD(e.target.value)}
+            />
           </div>
 
-          <Divider color="#58692" />
-
-          <div>
-            {diets.length === 0 ? (
-              <h1 className="not-fould-templates">Não há dietas cadastradas</h1>
-            ) : (
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col"> Paciente </th>
-                    <th scope="col"> Decrição da dieta </th>
-                    <th scope="col"> Dieta Completa </th>
-                  </tr>
-                </thead>
-                {handleTableDiet()}
-              </table>
-            )}
+          <div className="form-inputs">
+            <label>Nome da Refeição</label>
+            <input
+              type="text"
+              value={mealNameD}
+              onChange={(e) => setMealNameD(e.target.value)}
+            />
           </div>
         </div>
-      </div>
+
+        <div className="form-pair">
+          <div className="form-inputs">
+            <label>Ingredientes</label>
+            <input
+              type="text"
+              value={ingredientsD}
+              onChange={(e) => setIngredientsD(e.target.value)}
+            />
+          </div>
+          <div className="form-inputs">
+            <label>Quantidade</label>
+            <input
+              type="text"
+              value={quantityD}
+              onChange={(e) => setQuantityD(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="form-pair">
+          <div className="form-inputs">
+            <label>Modo de Preparo</label>
+            <input
+              type="text"
+              value={preparD}
+              onChange={(e) => setPreparD(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="btn-area">
+          {isLoading ? (
+            <CircularProgress color="success" />
+          ) : (
+            <button type="submit"> Cadastrar Dieta</button>
+          )}
+        </div>
+      </form>
     </div>
   );
 }
