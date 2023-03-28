@@ -10,6 +10,7 @@ import Diets from '../pages/Diets/Diets';
 import Diet from '../pages/diet';
 import Profile from '../pages/Profile/Profile';
 import Pacients from '../pages/Pacients/Pacients';
+import PersonFormu from '../pages/Pacients/PersonFormu';
 
 export default function Routes() {
   return (
@@ -21,6 +22,7 @@ export default function Routes() {
       <Route path="/profile" component={Profile} isPrivate />
       <Route path="/registerpatient" component={RegisterPatient} />
       <Route path="/patients" component={Pacients} isPrivate />
+      <Route path="/personformu" component={PersonFormu} isPrivate />
       <Route path="/patient" component={Patient} isPrivate />
       <Route path="/diets" component={Diets} isPrivate />
       <Route path="/diet" component={Diet} isPrivate />
