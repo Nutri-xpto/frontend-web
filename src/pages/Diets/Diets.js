@@ -559,6 +559,96 @@ export default function Diets() {
             )}
           </div>
         </div>
+
+        <div className="container-diet">
+          <h1> Cadastrar Nova Dieta</h1>
+          <form className="form-profile" onSubmit={handleAddDiet}>
+            <div>
+              <label>Selecione o Paciente</label>
+              {handleSelect()}
+            </div>
+
+            <div>
+              <label>Selecione o template</label>
+              {handleSelectTemplate()}
+            </div>
+
+            <div className="form-pair">
+              <div className="form-inputs">
+                <label>Descrição</label>
+                <input
+                  type="text"
+                  value={descriptionD}
+                  onChange={(e) => setDescriptionD(e.target.value)}
+                />
+              </div>
+              <div className="form-inputs">
+                <label>Dia da Semana</label>
+                <input
+                  type="text"
+                  value={dayD}
+                  onChange={(e) => setDayD(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="form-pair">
+              <div className="form-inputs">
+                <label>Horário</label>
+                <input
+                  type="text"
+                  value={hourD}
+                  onChange={(e) => setHourD(e.target.value)}
+                />
+              </div>
+
+              <div className="form-inputs">
+                <label>Nome da Refeição</label>
+                <input
+                  type="text"
+                  value={mealNameD}
+                  onChange={(e) => setMealNameD(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="form-pair">
+              <div className="form-inputs">
+                <label>Ingredientes</label>
+                <input
+                  type="text"
+                  value={ingredientsD}
+                  onChange={(e) => setIngredientsD(e.target.value)}
+                />
+              </div>
+              <div className="form-inputs">
+                <label>Quantidade</label>
+                <input
+                  type="text"
+                  value={quantityD}
+                  onChange={(e) => setQuantityD(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="form-pair">
+              <div className="form-inputs">
+                <label>Modo de Preparo</label>
+                <input
+                  type="text"
+                  value={preparD}
+                  onChange={(e) => setPreparD(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="btn-area">
+              {isLoading ? (
+                <CircularProgress color="success" />
+              ) : (
+                <button type="submit"> Cadastrar Dieta</button>
+              )}
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
