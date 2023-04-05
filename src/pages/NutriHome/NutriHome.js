@@ -1,4 +1,12 @@
-import { CircularProgress, Divider, Modal, Typography } from '@mui/material';
+import {
+  CircularProgress,
+  Divider,
+  Modal,
+  Typography,
+  Grid,
+  Dialog,
+  DialogTitle,
+} from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useContext, useEffect, useState } from 'react';
 import {
@@ -50,13 +58,29 @@ function NutriHome() {
   const [scheduledPacients, setScheduledPacients] = useState([]);
   const [isLoadingScheduledPacients, setIsLoadingScheduledPacients] =
     useState(true);
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState({ date: null });
   const [open, setOpen] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
+  const [openRecord, setOpenRecord] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleOpenFilter = () => setOpenFilter(true);
-  const handleClose = () => setOpen(false);
-  const handleCloseFilter = () => setOpenFilter(false);
+  const handleClose = () => {
+    setOpen(false);
+    setDate({ date: null });
+  };
+  const handleCloseFilter = () => {
+    setOpenFilter(false);
+    setDate({ date: null });
+  };
+  const [dataPacients, setDataPacients] = useState({ pacientData: null });
+  const handleCloseRecord = () => {
+    setOpenRecord(false);
+    setDataPacients({ pacientData: null });
+  };
+  const handleOpenRecord = (dataPacients) => {
+    setOpenRecord(true);
+    setDataPacients(dataPacients);
+  };
 
   function handleSelect() {
     if (pacients.length === 0) {
@@ -86,6 +110,25 @@ function NutriHome() {
   }
 
   function handleTable() {
+    const Item = ({ children }) => (
+      <Box
+        sx={{
+          bg: 'primary',
+          color: 'black',
+          padding: 2.5,
+          borderRadius: '10px',
+          height: '25%',
+          marginRight: '10px',
+          marginLeft: '10px',
+          marginTop: '10px',
+          background: 'white',
+          border: 'none',
+          display: 'flex',
+        }}
+      >
+        {children}
+      </Box>
+    );
     if (pacients.length === 0) {
       console.log(pacients);
       return <h1> Sem pacientes cadastrados</h1>;
@@ -107,12 +150,297 @@ function NutriHome() {
             <tr key={item.pacient.id}>
               <td data-label="Paciente"> {item.pacient.name}</td>
               <td data-label="Ficha do Paciente">
-                <Link className="link"> Abrir Ficha</Link>
+                <Link className="link">
+                  <a onClick={() => handleOpenRecord(item.pacient)}>
+                    Abrir Ficha
+                  </a>
+                  <Modal
+                    open={openRecord}
+                    onClose={handleCloseRecord}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: '3%',
+                        left: '20%',
+                        borderRadius: '16px',
+                        width: '70%',
+                        height: '95%',
+                        background: '#fdd28280',
+                        display: 'grid',
+                        gridAutoRows: '90px',
+                        gridTemplateColumns: 'repeat(2, 1fr)',
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          marginTop: '5px',
+                          marginLeft: '10px',
+                        }}
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                      >
+                        <h2>Informações do Paciente</h2>
+                      </Typography>
+                      <Typography variant="h4"></Typography>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Nome
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.name}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Idade
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.age}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Telefone
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.phone}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Email
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.email}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          CPF
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.cpf}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Sexo
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.gender}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Peso
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.weight}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Altura
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.height}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Meta
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.goal}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          IMC
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.imc}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Dados da Biopedancia
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.bioimpedance}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Histórico de Saúde
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.diseaseHistory}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Informações Adicionais
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataPacients.additionalInf}
+                        </Typography>
+                      </Item>
+                    </Box>
+                  </Modal>
+                </Link>
               </td>
               <td data-label="Data"> {item.date}</td>
               <td data-label="Horário"> {item.hour}</td>
               <td data-label="#">
-                <button>
+                <button onClick={() => handleDeleteScheduledPacient(item.id)}>
                   {' '}
                   <FiUserCheck />
                 </button>
@@ -123,7 +451,6 @@ function NutriHome() {
       });
     }
   }
-
   function handleTableToDay() {
     const today = dayjs(new Date()).format('DD/MM/YYYY').toString();
     if (pacients.length === 0) {
@@ -148,11 +475,15 @@ function NutriHome() {
               <tr key={item.pacient.id}>
                 <td data-label="Paciente"> {item.pacient.name}</td>
                 <td data-label="Ficha do Paciente">
-                  <Link className="link"> Abrir Ficha</Link>
+                  <Link className="link">
+                    <a onClick={() => handleOpenRecord(item.pacient)}>
+                      Abrir Ficha
+                    </a>
+                  </Link>
                 </td>
                 <td data-label="Horário"> {item.hour}</td>
                 <td data-label="#">
-                  <button>
+                  <button onClick={() => handleDeleteScheduledPacient(item.id)}>
                     {' '}
                     <FiUserCheck />
                   </button>
@@ -200,6 +531,7 @@ function NutriHome() {
         let lista = [];
         snapshot.forEach((doc) => {
           lista.push({
+            id: doc.id,
             pacient: doc.data().pacient,
             date: doc.data().date,
             hour: doc.data().hour,
@@ -235,6 +567,7 @@ function NutriHome() {
         let lista = [];
         snapshot.forEach((doc) => {
           lista.push({
+            id: doc.id,
             pacient: doc.data().pacient,
             date: doc.data().date,
             hour: doc.data().hour,
@@ -258,7 +591,43 @@ function NutriHome() {
     setOpenFilter(false);
     setDate('');
   }
-
+  function handleDeleteScheduledPacient(scheduleId) {
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(user.uid)
+      .collection('scheduledPacientsDaily')
+      .doc(scheduleId)
+      .delete()
+      .then(() => {
+        console.log('Agendamento excluído com sucesso!', scheduleId);
+      })
+      .catch((error) => {
+        console.error('Erro ao excluir elemento:', error);
+      });
+    loadScheduledPacients();
+  }
+  /*  function handleUpdateScheduledPacient(scheduleId, newDate) {
+    // Obtém uma referência para o documento que deve ser excluído
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(user.uid)
+      .collection('scheduledPacientsDaily')
+      .doc(scheduleId)
+      .update({
+        date: dayjs(newDate).format('DD/MM/YYYY').toString(), //Trouxe a formatação da hora para aaqui
+        hour: dayjs(newDate).format('HH:mm').toString(), //Trouxe a formatação da hora para aaqui
+        date_order: dayjs(newDate).format('YYYY/MM/DD HH:mm').toString(),
+      })
+      .then(() => {
+        console.log('Elemento excluído com sucesso!', scheduleId);
+      })
+      .catch((error) => {
+        console.error('Erro ao excluir elemento:', error);
+      });
+    loadScheduledPacients();
+  }*/
   // async function handleDeleteScheduledPacient(pacientId) {
   //   await firebase
   //     .firestore()

@@ -63,7 +63,6 @@ export default function Diets() {
   const [isLoadingPacients, setIsLoadingPacients] = useState(true);
   const [isLoadingDiets, setIsLoadingDiets] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
   function handleSelect() {
     if (pacients.length === 0) {
       return <span> Sem pacientes cadastrados</span>;
@@ -135,6 +134,25 @@ export default function Diets() {
   }
 
   function handleTableTemplates() {
+    const Item = ({ children }) => (
+      <Box
+        sx={{
+          bg: 'primary',
+          color: 'black',
+          padding: 2.5,
+          borderRadius: '10px',
+          height: '25%',
+          marginRight: '10px',
+          marginLeft: '10px',
+          marginTop: '10px',
+          background: 'white',
+          border: 'none',
+          display: 'flex',
+        }}
+      >
+        {children}
+      </Box>
+    );
     if (isLoadingTemplates) {
       return (
         <div className="loading-scheduled-pacients">Carregando templates</div>
@@ -148,7 +166,53 @@ export default function Diets() {
               <td data-label="Nome da Dieta"> {item.dietName}</td>
               <td data-label="Descrição"> {item.description}</td>
               <td data-label="Ficha do Paciente">
-                <Link className="link"> Abrir Template</Link>
+                <Link className="link">
+                  <a onClick={() => setOpen(true)}>Abrir Template</a>
+                  <Modal open={open} onClose={() => setOpen(false)}>
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: '3%',
+                        left: '20%',
+                        borderRadius: '16px',
+                        width: '70%',
+                        height: '95%',
+                        background: '#fdd28280',
+                        display: 'grid',
+                        gridAutoRows: '90px',
+                        gridTemplateColumns: 'repeat(2, 1fr)',
+                      }}
+                    >
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                      >
+                        Template
+                      </Typography>
+                      <Typography variant="h4"></Typography>
+                      <Item>
+                        <Box
+                          sx={{
+                            display: 'inline',
+                            position: 'relative',
+                            top: '-15px',
+                            left: '-10px',
+                          }}
+                        >
+                          Nome
+                        </Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {item.dietName}
+                        </Typography>
+                      </Item>
+                    </Box>
+                  </Modal>
+                </Link>
               </td>
               <td data-label="Ações">
                 <button>
