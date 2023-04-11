@@ -48,7 +48,39 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
+const styleItem = {
+  bg: 'primary',
+  color: 'black',
+  padding: 2.5,
+  borderRadius: '10px',
+  height: '25%',
+  marginRight: '10px',
+  marginLeft: '10px',
+  marginTop: '10px',
+  background: '#f5f5f5',
+  border: 'none',
+  display: 'flex',
+};
+const Item = ({ children }) => <Box sx={styleItem}>{children}</Box>;
+const styleVisualization = {
+  position: 'absolute',
+  top: '3%',
+  left: '20%',
+  borderRadius: '16px',
+  width: '70%',
+  height: '95%',
+  bgcolor: 'white',
+  display: 'grid',
+  gridAutoRows: '90px',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  overflowY: 'scroll',
+};
+const styleLine = {
+  display: 'inline',
+  position: 'relative',
+  top: '-15px',
+  left: '-10px',
+};
 function NutriHome() {
   const { signOut, user } = useContext(AuthContext);
   const [pacients, setPacients] = useState([]);
@@ -110,25 +142,6 @@ function NutriHome() {
   }
 
   function handleTable() {
-    const Item = ({ children }) => (
-      <Box
-        sx={{
-          bg: 'primary',
-          color: 'black',
-          padding: 2.5,
-          borderRadius: '10px',
-          height: '25%',
-          marginRight: '10px',
-          marginLeft: '10px',
-          marginTop: '10px',
-          background: 'white',
-          border: 'none',
-          display: 'flex',
-        }}
-      >
-        {children}
-      </Box>
-    );
     if (pacients.length === 0) {
       console.log(pacients);
       return <h1> Sem pacientes cadastrados</h1>;
@@ -160,20 +173,7 @@ function NutriHome() {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                   >
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: '3%',
-                        left: '20%',
-                        borderRadius: '16px',
-                        width: '70%',
-                        height: '95%',
-                        background: '#fdd28280',
-                        display: 'grid',
-                        gridAutoRows: '90px',
-                        gridTemplateColumns: 'repeat(2, 1fr)',
-                      }}
-                    >
+                    <Box sx={styleVisualization}>
                       <Typography
                         sx={{
                           marginTop: '5px',
@@ -187,16 +187,7 @@ function NutriHome() {
                       </Typography>
                       <Typography variant="h4"></Typography>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Nome
-                        </Box>
+                        <Box sx={styleLine}>Nome</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -206,16 +197,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Idade
-                        </Box>
+                        <Box sx={styleLine}>Idade</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -225,16 +207,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Telefone
-                        </Box>
+                        <Box sx={styleLine}>Telefone</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -244,16 +217,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Email
-                        </Box>
+                        <Box sx={styleLine}>Email</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -263,16 +227,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          CPF
-                        </Box>
+                        <Box sx={styleLine}>CPF</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -282,16 +237,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Sexo
-                        </Box>
+                        <Box sx={styleLine}>Sexo</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -301,16 +247,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Peso
-                        </Box>
+                        <Box sx={styleLine}>Peso</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -320,16 +257,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Altura
-                        </Box>
+                        <Box sx={styleLine}>Altura</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -339,16 +267,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Meta
-                        </Box>
+                        <Box sx={styleLine}>Meta</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -358,16 +277,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          IMC
-                        </Box>
+                        <Box sx={styleLine}>IMC</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -377,16 +287,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Dados da Biopedancia
-                        </Box>
+                        <Box sx={styleLine}>Dados da Biopedancia</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -396,16 +297,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Histórico de Saúde
-                        </Box>
+                        <Box sx={styleLine}>Histórico de Saúde</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
@@ -415,16 +307,7 @@ function NutriHome() {
                         </Typography>
                       </Item>
                       <Item>
-                        <Box
-                          sx={{
-                            display: 'inline',
-                            position: 'relative',
-                            top: '-15px',
-                            left: '-10px',
-                          }}
-                        >
-                          Informações Adicionais
-                        </Box>
+                        <Box sx={styleLine}>Informações Adicionais</Box>
                         <Typography
                           id="modal-modal-title"
                           variant="h6"
