@@ -1,9 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { CircularProgress, Divider, Modal, Typography } from '@mui/material';
+
+import {
+  CircularProgress,
+  Divider,
+  Modal,
+  Typography,
+  Grid,
+  Dialog,
+  DialogTitle,
+} from '@mui/material';
+
 import { Box } from '@mui/system';
 import React, { useContext, useEffect, useState } from 'react';
-import { FiHome, FiPlus, FiUserCheck } from 'react-icons/fi';
+import {
+  FiDelete,
+  FiHome,
+  FiPlus,
+  FiUserCheck,
+  FiCalendar,
+  FiX,
+} from 'react-icons/fi';
 import { Link, NavLink } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Title from '../../components/Title/Title';
@@ -15,6 +32,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import firebase from '../../services/firabaseConnection';
 import dayjs from 'dayjs';
+import { hasUnreliableEmptyValue } from '@testing-library/user-event/dist/utils';
+
 
 const style = {
   position: 'absolute',
