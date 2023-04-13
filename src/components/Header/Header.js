@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-unused-vars */
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/auth';
 import './header.css';

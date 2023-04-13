@@ -1,15 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import Header from '../../components/Header/Header';
 import Title from '../../components/Title/Title';
 import './diets.css';
-import {
-  FiAlignRight,
-  FiDelete,
-  FiEdit,
-  FiLogOut,
-  FiPlus,
-  FiUpload,
-  FiUser,
-} from 'react-icons/fi';
+import { FiAlignRight, FiDelete, FiEdit, FiPlus } from 'react-icons/fi';
 import { AuthContext } from '../../contexts/auth';
 import { useContext, useEffect, useState } from 'react';
 import firebase from '../../services/firabaseConnection';

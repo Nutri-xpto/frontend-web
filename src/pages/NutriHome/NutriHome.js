@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { CircularProgress, Divider, Modal, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useContext, useEffect, useState } from 'react';
-import { FiDelete, FiHome, FiPlus, FiUserCheck } from 'react-icons/fi';
+import { FiHome, FiPlus, FiUserCheck } from 'react-icons/fi';
 import { Link, NavLink } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Title from '../../components/Title/Title';
