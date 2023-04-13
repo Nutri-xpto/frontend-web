@@ -34,7 +34,7 @@ import firebase from '../../services/firabaseConnection';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { hasUnreliableEmptyValue } from '@testing-library/user-event/dist/utils';
-//import ptBR from 'date-fns/locale/pt-BR';
+import ptBR from 'date-fns/locale/pt-BR';
 
 dayjs.locale('pt-br');
 const style = {
