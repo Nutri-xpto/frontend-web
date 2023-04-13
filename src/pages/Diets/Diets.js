@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Header from '../../components/Header/Header';
 import Title from '../../components/Title/Title';
 import './diets.css';
@@ -1071,7 +1072,7 @@ export default function Diets() {
 
   useEffect(() => {
     loadDiets();
-  }, []);
+  }, [diets]);
 
   useEffect(() => {
     loadPacients();
