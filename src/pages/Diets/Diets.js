@@ -472,7 +472,7 @@ export default function Diets() {
                       <input
                         className="input"
                         type="text"
-                        placeholder="Ingredientes (obs: separados por vírgula)"
+                        placeholder="Ingredientes (obs. separados por vírgula)"
                         value={ingredients}
                         onChange={(e) => setIngredients(e.target.value)}
                       />
