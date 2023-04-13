@@ -1071,7 +1071,7 @@ export default function Diets() {
 
   useEffect(() => {
     loadDiets();
-  }, []);
+  }, [diets]);
 
   useEffect(() => {
     loadPacients();
