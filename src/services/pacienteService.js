@@ -1,5 +1,4 @@
 import firebase from './firabaseConnection';
-import { Link, NavLink } from 'react-router-dom';
 
 const registerPacient = async (
   uidNutri,
@@ -48,11 +47,7 @@ const registerPacient = async (
           imagePerfil: null,
         })
         .then(() => {
-          alert(
-            'Paciente cadastrado. Você será levado para o cadastro de dietas',
-            name
-          );
-          window.location.replace('http://localhost:3000/dietformu');
+          alert('Paciente cadastrado:', name);
         });
     })
     .catch((error) => {
