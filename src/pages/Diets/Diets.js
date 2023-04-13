@@ -24,6 +24,72 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+const styleVisualization = {
+  display: 'grid',
+  gridAutoRows: '100px',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '65%',
+  height: '70%',
+  borderRadius: 5,
+  bgcolor: 'white',
+  border: 'none',
+  boxShadow: 24,
+  p: 2,
+  overflowY: 'scroll',
+};
+const styleLine = {
+  display: 'inline',
+  position: 'relative',
+  top: '-15px',
+  left: '-10px',
+};
+const styleItem = {
+  bg: 'primary',
+  color: 'black',
+  padding: 2,
+  borderRadius: '10px',
+  height: '25%',
+  marginRight: '15px',
+  marginLeft: '15px',
+  marginTop: '25px',
+  background: '#f5f5f5',
+  border: 'none',
+  display: 'flex',
+};
+const styleItemDescription = {
+  bg: 'primary',
+  color: 'black',
+  padding: 2,
+  borderRadius: '10px',
+  height: '75%',
+  marginRight: '15px',
+  marginLeft: '15px',
+  background: '#f5f5f5',
+  border: 'none',
+  display: 'flex',
+  overflowY: 'scroll',
+};
+const styleForms = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '50%',
+  height: '88%',
+  borderRadius: 5,
+  bgcolor: 'white',
+  border: 'none',
+  boxShadow: 24,
+  p: 4,
+};
+const Item = ({ children }) => <Box sx={styleItem}>{children}</Box>;
+const ItemDescription = ({ children }) => (
+  <Box sx={styleItemDescription}>{children}</Box>
+);
 
 export default function Diets() {
   const { user } = useContext(AuthContext);
@@ -57,7 +123,69 @@ export default function Diets() {
   const [isLoadingPacients, setIsLoadingPacients] = useState(true);
   const [isLoadingDiets, setIsLoadingDiets] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [dataTemplates, setDataTemplates] = useState({ templateData: null });
+  const [openTemplate, setOpenTemplate] = useState(false);
+  const handleOpenTemplate = (dataTemplates) => {
+    setOpenTemplate(true);
+    setDataTemplates(dataTemplates);
+  };
+  const handleCloseTemplate = () => {
+    setOpenTemplate(false);
+    setDataTemplates({ templateData: null });
+  };
+  const [dataDiets, setDataDiets] = useState({ dietData: null });
+  const [openDiet, setOpenDiet] = useState(false);
+  const handleOpenDiet = (dataDiets) => {
+    setOpenDiet(true);
+    setDataDiets(dataDiets);
+  };
+  const handleCloseDiet = () => {
+    setOpenDiet(false);
+    setDataDiets({ dietData: null });
+  };
+  const [dataTampletsEdit, setDataTampletsEdit] = useState({
+    tampletEditData: null,
+    dietName: '',
+    description: '',
+    day: '',
+    hour: '',
+    mealName: '',
+    ingredients: '',
+    quantity: '',
+    prepar: '',
+  });
+  const [dataDietsEdit, setDataDietsEdit] = useState({
+    dietEditData: null,
+    dietName: '',
+    description: '',
+    day: '',
+    hour: '',
+    mealName: '',
+    ingredients: '',
+    quantity: '',
+    prepar: '',
+    pacient: '',
+  });
+  const [openTampletEdit, setOpenTampletEdit] = useState(false);
+  const [openDietEdit, setOpenDietEdit] = useState(false);
+  const handleOpenTampletEdit = (dataTampletsEdit) => {
+    setOpenTampletEdit(true);
+    setDataTampletsEdit(dataTampletsEdit);
+    console.log(dataTampletsEdit);
+  };
+  const handleCloseTampletEdit = () => {
+    setOpenTampletEdit(false);
+    setDataTampletsEdit({ tampletEditData: null });
+  };
+  const handleOpenDietEdit = (dataDietsEdit) => {
+    setOpenDietEdit(true);
+    setDataDietsEdit(dataDietsEdit);
+    console.log(dataDietsEdit);
+  };
+  const handleCloseDietEdit = () => {
+    setOpenDietEdit(false);
+    setDataDietsEdit({ dietEditData: null });
+  };
   function handleSelect() {
     if (pacients.length === 0) {
       return <span> Sem pacientes cadastrados</span>;
@@ -142,17 +270,225 @@ export default function Diets() {
               <td data-label="Nome da Dieta"> {item.dietName}</td>
               <td data-label="Descrição"> {item.description}</td>
               <td data-label="Ficha do Paciente">
-                <Link className="link"> Abrir Template</Link>
+                <Link className="link">
+                  <a onClick={() => handleOpenTemplate(item)}>Abrir Template</a>
+                  <Modal open={openTemplate} onClose={handleCloseTemplate}>
+                    <Box sx={styleVisualization}>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h4"
+                        component="h2"
+                      >
+                        Template
+                      </Typography>
+                      <Typography variant="h4"></Typography>
+                      <Item>
+                        <Box sx={styleLine}>Nome</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataTemplates.dietName}
+                        </Typography>
+                      </Item>
+                      <ItemDescription>
+                        <Box sx={styleLine}>Descrição</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataTemplates.description}
+                        </Typography>
+                      </ItemDescription>
+                      <Item>
+                        <Box sx={styleLine}>Dia e Horário</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataTemplates.day} - {dataTemplates.hour}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box sx={styleLine}>Nome da Refeição</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataTemplates.mealName}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box sx={styleLine}>Ingredientes</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataTemplates.ingredients}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box sx={styleLine}>Quantidade</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataTemplates.quantity}
+                        </Typography>
+                      </Item>
+                      <ItemDescription>
+                        <Box sx={styleLine}>Modo de Preparo</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataTemplates.prepar}
+                        </Typography>
+                      </ItemDescription>
+                    </Box>
+                  </Modal>
+                </Link>
               </td>
               <td data-label="Ações">
-                <button>
-                  {' '}
+                <button onClick={() => handleDeleteTemplate(item.id)}>
                   <FiDelete />
                 </button>
-                <button>
+                <button onClick={() => handleOpenTampletEdit(item)}>
                   {' '}
                   <FiEdit />
                 </button>
+                <Modal open={openTampletEdit} onClose={handleCloseTampletEdit}>
+                  <Box sx={styleForms}>
+                    <Typography id="modal--title" variant="h6" component="h2">
+                      Editar Template
+                    </Typography>
+                    <form className="info-form-diet">
+                      Nome
+                      <input
+                        className="input"
+                        type="text"
+                        placeholder="Nome da dieta"
+                        value={dataTampletsEdit.dietName}
+                        onChange={(e) =>
+                          setDataTampletsEdit({
+                            ...dataTampletsEdit,
+                            dietName: e.target.value,
+                          })
+                        }
+                      />
+                      Descrição
+                      <input
+                        className="input"
+                        type="text"
+                        placeholder="Descrição da Dieta: (motivo e calorias)"
+                        value={dataTampletsEdit.description}
+                        onChange={(e) =>
+                          setDataTampletsEdit({
+                            ...dataTampletsEdit,
+                            description: e.target.value,
+                          })
+                        }
+                      />
+                      <div className="description">
+                        Dia da Semana
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Dia da Semana"
+                          value={dataTampletsEdit.day}
+                          onChange={(e) =>
+                            setDataTampletsEdit({
+                              ...dataTampletsEdit,
+                              day: e.target.value,
+                            })
+                          }
+                        />
+                        Horário
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Horário"
+                          value={dataTampletsEdit.hour}
+                          onChange={(e) =>
+                            setDataTampletsEdit({
+                              ...dataTampletsEdit,
+                              hour: e.target.value,
+                            })
+                          }
+                        />
+                        Nome da Refeição
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Nome da refeição"
+                          value={dataTampletsEdit.mealName}
+                          onChange={(e) =>
+                            setDataTampletsEdit({
+                              ...dataTampletsEdit,
+                              mealName: e.target.value,
+                            })
+                          }
+                        />
+                        Ingredientes
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Ingredientes (obs: separados por vírgula)"
+                          value={dataTampletsEdit.ingredients}
+                          onChange={(e) =>
+                            setDataTampletsEdit({
+                              ...dataTampletsEdit,
+                              ingredients: e.target.value,
+                            })
+                          }
+                        />
+                        Quantidade
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Quantidade (obs: separados por vírgula)"
+                          value={dataTampletsEdit.quantity}
+                          onChange={(e) =>
+                            setDataTampletsEdit({
+                              ...dataTampletsEdit,
+                              quantity: e.target.value,
+                            })
+                          }
+                        />
+                        Modo de Preparo
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Modo de preparo"
+                          value={dataTampletsEdit.prepar}
+                          onChange={(e) =>
+                            setDataTampletsEdit({
+                              ...dataTampletsEdit,
+                              prepar: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </form>
+                    <div className="button-edit">
+                      <button
+                        onClick={() =>
+                          handleUpdateTemplate(dataTampletsEdit.id)
+                        }
+                        className="btn-diet-template"
+                      >
+                        Editar Template
+                      </button>
+                    </div>
+                  </Box>
+                </Modal>
               </td>
             </tr>
           </tbody>
@@ -174,20 +510,221 @@ export default function Diets() {
               <td data-label="Nome da Dieta">{item.pacient}</td>
               <td data-label="Descrição"> {item.description}</td>
               <td data-label="Ficha do Paciente">
-                <Link onClick={setOpenModalDiet} className="link">
-                  {' '}
-                  Abrir Dieta
+                <Link className="link">
+                  <a onClick={() => handleOpenDiet(item)}>Abrir Dieta</a>
+                  <Modal open={openDiet} onClose={handleCloseDiet}>
+                    <Box sx={styleVisualization}>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h4"
+                        component="h2"
+                      >
+                        Dieta
+                      </Typography>
+                      <Typography variant="h4"></Typography>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h8"
+                        component="h2"
+                      >
+                        Paciente: {dataDiets.pacient}
+                      </Typography>
+                      <Item>
+                        <Box sx={styleLine}>Meta</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataDiets.goal}
+                        </Typography>
+                      </Item>
+                      <ItemDescription>
+                        <Box sx={styleLine}>Descrição</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataDiets.description}
+                        </Typography>
+                      </ItemDescription>
+                      <Item>
+                        <Box sx={styleLine}>Dia e Horário</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataDiets.day} - {dataDiets.hour}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box sx={styleLine}>Nome da Refeição</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataDiets.mealName}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box sx={styleLine}>Ingredientes</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataDiets.ingredients}
+                        </Typography>
+                      </Item>
+                      <Item>
+                        <Box sx={styleLine}>Quantidade</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataDiets.quantity}
+                        </Typography>
+                      </Item>
+                      <ItemDescription>
+                        <Box sx={styleLine}>Modo de Preparo</Box>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          {dataDiets.prepar}
+                        </Typography>
+                      </ItemDescription>
+                    </Box>
+                  </Modal>
                 </Link>
               </td>
               <td data-label="Ações">
-                <button>
+                <button onClick={() => handleDeleteDiet(item.id)}>
                   {' '}
                   <FiDelete />
                 </button>
-                <button>
+                <button onClick={() => handleOpenDietEdit(item)}>
                   {' '}
                   <FiEdit />
                 </button>
+                <Modal open={openDietEdit} onClose={handleCloseDietEdit}>
+                  <Box sx={styleForms}>
+                    <Typography id="modal--title" variant="h6" component="h2">
+                      Editar Dieta
+                    </Typography>
+                    <form className="info-form-diet">
+                      <Typography id="modal--title" variant="h6" component="h2">
+                        Paciente: {dataDietsEdit.pacient}
+                      </Typography>
+                      Descrição
+                      <input
+                        className="input"
+                        type="text"
+                        placeholder="Descrição da Dieta: (motivo e calorias)"
+                        value={dataDietsEdit.description}
+                        onChange={(e) =>
+                          setDataDietsEdit({
+                            ...dataDietsEdit,
+                            description: e.target.value,
+                          })
+                        }
+                      />
+                      <div className="description">
+                        Dia da Semana
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Dia da Semana"
+                          value={dataDietsEdit.day}
+                          onChange={(e) =>
+                            setDataDietsEdit({
+                              ...dataDietsEdit,
+                              day: e.target.value,
+                            })
+                          }
+                        />
+                        Horário
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Horário"
+                          value={dataDietsEdit.hour}
+                          onChange={(e) =>
+                            setDataDietsEdit({
+                              ...dataDietsEdit,
+                              hour: e.target.value,
+                            })
+                          }
+                        />
+                        Nome da Refeição
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Nome da refeição"
+                          value={dataDietsEdit.mealName}
+                          onChange={(e) =>
+                            setDataDietsEdit({
+                              ...dataDietsEdit,
+                              mealName: e.target.value,
+                            })
+                          }
+                        />
+                        Ingredientes
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Ingredientes (obs: separados por vírgula)"
+                          value={dataDietsEdit.ingredients}
+                          onChange={(e) =>
+                            setDataDietsEdit({
+                              ...dataDietsEdit,
+                              ingredients: e.target.value,
+                            })
+                          }
+                        />
+                        Quantidade
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Quantidade (obs: separados por vírgula)"
+                          value={dataDietsEdit.quantity}
+                          onChange={(e) =>
+                            setDataDietsEdit({
+                              ...dataDietsEdit,
+                              quantity: e.target.value,
+                            })
+                          }
+                        />
+                        Modo de Preparo
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Modo de preparo"
+                          value={dataDietsEdit.prepar}
+                          onChange={(e) =>
+                            setDataDietsEdit({
+                              ...dataDietsEdit,
+                              prepar: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </form>
+                    <div className="button-edit">
+                      <button
+                        onClick={() => handleUpdateDiet(dataDietsEdit.id)}
+                        className="btn-diet-template"
+                      >
+                        Editar Dieta
+                      </button>
+                    </div>
+                  </Box>
+                </Modal>
               </td>
             </tr>
           </tbody>
@@ -225,7 +762,59 @@ export default function Diets() {
         alert('Ocorreu algum erro. Tente novamente!');
       });
   }
+  function handleDeleteTemplate(templateId) {
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(user.uid)
+      .collection('templates')
+      .doc(templateId)
+      .delete()
+      .then(() => {
+        console.log('Template excluído com sucesso!', templateId);
+      })
+      .catch((error) => {
+        console.error('Erro ao excluir elemento:', error);
+      });
+    loadTemplates();
+  }
+  function handleDeleteDiet(dietId) {
+    let uidsPacients = [];
+    pacients.map((pacient) => uidsPacients.push(pacient.id));
+    console.log('uidss', uidsPacients);
+    const mainColletionPacientsRef = firebase
+      .firestore()
+      .collection('users')
+      .doc(user.uid)
+      .collection('pacients');
 
+    mainColletionPacientsRef
+      .get()
+      .then((snapshot) => {
+        console.log('snapsshoot', snapshot.docs);
+        let lista = [];
+        snapshot.forEach((doc) => {
+          mainColletionPacientsRef
+            .doc(doc.id)
+            .collection('diet')
+            .doc(dietId)
+            .delete()
+            .then(() => {
+              console.log('Dieta excluída com sucesso!', dietId);
+            })
+            .catch((error) => {
+              console.error('Erro ao excluir elemento:', error);
+            });
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+        alert('Ocorreu algum erro ao pesquisar as dietas');
+        setDiets([]);
+        setIsLoadingDiets(false);
+      });
+    loadDiets();
+  }
   async function loadTemplates() {
     await firebase
       .firestore()
@@ -237,6 +826,7 @@ export default function Diets() {
         let lista = [];
         snapshot.forEach((doc) => {
           lista.push({
+            id: doc.id,
             dietName: doc.data().dietName,
             description: doc.data().description,
             day: doc.data().day,
@@ -262,6 +852,78 @@ export default function Diets() {
         alert('Ocorreu algum erro ao pesquisar os pacientes');
         setTemplates([]);
         setIsLoadingTemplates(false);
+      });
+  }
+  function handleUpdateTemplate(templateId, e) {
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(user.uid)
+      .collection('templates')
+      .doc(templateId)
+      .update({
+        dietName: dataTampletsEdit.dietName,
+        description: dataTampletsEdit.description,
+        day: dataTampletsEdit.day,
+        hour: dataTampletsEdit.hour,
+        mealName: dataTampletsEdit.mealName,
+        ingredients: dataTampletsEdit.ingredients,
+        quantity: dataTampletsEdit.quantity,
+        prepar: dataTampletsEdit.prepar,
+      })
+      .then(() => {
+        console.log('Template atualizado com sucesso!', dietName);
+        loadTemplates();
+        setOpenTampletEdit(false);
+      })
+      .catch((error) => {
+        console.error('Erro ao excluir elemento:', error);
+      });
+  }
+  function handleUpdateDiet(dietId, e) {
+    let uidsPacients = [];
+    pacients.map((pacient) => uidsPacients.push(pacient.id));
+    console.log('uidss', uidsPacients);
+    const mainColletionPacientsRef = firebase
+      .firestore()
+      .collection('users')
+      .doc(user.uid)
+      .collection('pacients');
+
+    mainColletionPacientsRef
+      .get()
+      .then((snapshot) => {
+        console.log('snapsshoot', snapshot.docs);
+        let lista = [];
+        snapshot.forEach((doc) => {
+          mainColletionPacientsRef
+            .doc(doc.id)
+            .collection('diet')
+            .doc(dietId)
+            .update({
+              description: dataDietsEdit.description,
+              day: dataDietsEdit.day,
+              hour: dataDietsEdit.hour,
+              mealName: dataDietsEdit.mealName,
+              ingredients: dataDietsEdit.ingredients,
+              quantity: dataDietsEdit.quantity,
+              prepar: dataDietsEdit.prepar,
+            })
+            .then(() => {
+              console.log('Template atualizado com sucesso!', dietName);
+              loadDiets();
+              setOpenDietEdit(false);
+            })
+            .catch((error) => {
+              console.error('Erro ao excluir elemento:', error);
+            });
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+        alert('Ocorreu algum erro ao pesquisar as dietas');
+        setDiets([]);
+        setIsLoadingDiets(false);
       });
   }
 
@@ -367,9 +1029,17 @@ export default function Diets() {
               console.log('idDiet', doc2.id);
               console.log(doc.data().name);
               lista.push({
-                pacient: doc.data().name,
                 id: doc2.id,
+                pacient: doc.data().name,
+                goal: doc.data().goal,
+                dietName: doc2.data().dietName,
                 description: doc2.data().description,
+                day: doc2.data().day,
+                hour: doc2.data().hour,
+                mealName: doc2.data().mealName,
+                ingredients: doc2.data().ingredients,
+                quantity: doc2.data().quantity,
+                prepar: doc2.data().prepar,
               });
               if (lista.length === 0) {
                 setDiets([]);
