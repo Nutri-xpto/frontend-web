@@ -19,11 +19,8 @@
     margin-top: 40px;
 
 }
-#modal--title--edit{
-    float: left;
-    display:inline;
-    align-items: left;
-}
+
+
 .schedulle-diet span{
     padding: 10px 10px;
     display: flex;
@@ -105,13 +102,10 @@ table td button{
 .link{
     color: #58692e
 }
-.button-edit{
-    float: right;
-    display: flex;
-}
+
 .description{
     width: 500px;
-    align-items: left;
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -142,7 +136,7 @@ table td button{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
+    align-items: center;
 }
 
 .not-fould-templates{
