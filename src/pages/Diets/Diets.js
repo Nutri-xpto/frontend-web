@@ -168,6 +168,7 @@ export default function Diets() {
         <div className="loading-scheduled-pacients">Carregando templates</div>
       );
     } else {
+      console.log('Dietas por aqui', diets);
       return diets.map((item, index) => {
         return (
           <tbody>
@@ -404,6 +405,7 @@ export default function Diets() {
 
   useEffect(() => {
     loadTemplates();
+    loadDiets();
   }, []);
 
   return (
