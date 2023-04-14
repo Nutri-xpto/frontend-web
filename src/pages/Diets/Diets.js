@@ -1067,7 +1067,7 @@ export default function Diets() {
 
   useEffect(() => {
     loadDiets();
-  }, [diets]);
+  }, []);
   //[diets]
 
   useEffect(() => {
