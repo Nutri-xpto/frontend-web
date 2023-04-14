@@ -59,20 +59,8 @@
     box-shadow: 2px 4px 20px 4px rgba(88, 105, 46, 0.355);
     margin-top: 40px;
     margin-left: 30px;
-    overflow-y:scroll;
-}
-.schedulleMonthly{
-    height: 500px;
-    width: 98%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 2px 4px 20px 4px rgba(88, 105, 46, 0.355);
-    margin-top: 40px;
-    margin-left: 30px;
-    overflow-y:scroll;
 
 }
-
 
 .card-register-diet-pacient{
     height: 200px;
@@ -90,35 +78,12 @@
     font-size: 20px;
     color: #58692e;
     font-weight: bold;
-    
-    
 }
 
-.schedulleMonthly span{
-    padding: 10px 10px;
-    display: flex;
-    font-size: 20px;
-    color: #58692e;
-    font-weight: bold;
-    
-    
-}
 .scheduller-head {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
-}
-.scheduller-head-botton-Monthly{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.scheduller-head-Monthly{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
 }
 
 .scheduller-head button{
@@ -137,44 +102,8 @@
     background-color: #58692e;
     color: #f5f5f5;
     cursor: pointer;
-    
 }
-.scheduller-head-Monthly button{
-    font-size: 15px;
-    font-family: 'DM Sans';
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    margin-top: 10px;
-    height: 30px;
-    width: 150px;
-    background-color: #58692e;
-    color: #f5f5f5;
-    cursor: pointer;
-    
-}
-.scheduller-head-Monthly button#desfiltrar{
-    font-size: 15px;
-    font-family: 'DM Sans';
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    margin-top: 10px;
-    height: 30px;
-    width: 30px;
-    background-color: #58692e;
-    color: #f5f5f5;
-    cursor: pointer;
-    
-}
+
 .register-diet-pacient {
     display: flex;
     flex-direction: column;
@@ -209,12 +138,6 @@
     align-items: center;
 }
 
-.schedulleMonthly h1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 table {
     border: 1px solid #ccc;
     border-collapse: collapse;
@@ -222,8 +145,6 @@ table {
     table-layout: fixed;
     overflow-y: scroll;
     overflow: hidden;
-
-
 }
 
 table caption{

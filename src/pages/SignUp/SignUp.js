@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './signup.css';
