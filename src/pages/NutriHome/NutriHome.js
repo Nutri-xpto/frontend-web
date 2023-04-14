@@ -34,7 +34,6 @@ import firebase from '../../services/firabaseConnection';
 import dayjs from 'dayjs';
 import { hasUnreliableEmptyValue } from '@testing-library/user-event/dist/utils';
 
-
 const style = {
   position: 'absolute',
   top: '50%',
