@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import Header from '../../components/Header/Header';
 import Title from '../../components/Title/Title';
 import './pacients.css';
-import { FiLogOut, FiUpload, FiUser, FiUsers } from 'react-icons/fi';
+import { FiUsers } from 'react-icons/fi';
 import { AuthContext } from '../../contexts/auth';
 import { useContext, useEffect, useState } from 'react';
 import avatar from '../../assets/user_icon.png';
